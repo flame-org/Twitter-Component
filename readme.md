@@ -74,6 +74,6 @@ Add the following dependency to your `composer.json` file and you're ready to go
 
 	screenName  Twitter screen name (either screenName or userId is required)
 	userId      Twitter user ID (takes precedence over screenName, if both specified)
-	count 		Number of tweets to load (max. 200)
+	tweetCount 		Number of tweets to load (max. 200)
 	retweets    Include retweets
 	replies     Include replies
