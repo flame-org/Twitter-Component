@@ -21,7 +21,7 @@ Add the following dependency to your `composer.json` file and you're ready to go
 
 ## Usage
 
-## In the config.neon
+### In the config.neon
 
 	common:
 		parameters:
