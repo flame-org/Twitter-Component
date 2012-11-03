@@ -16,7 +16,7 @@ class TwitterControl extends \Flame\Application\UI\Control
 	/**
 	 * @var array
 	 */
-	private $items = array();
+	protected $items = array();
 
 	/**
 	 * @param $items
