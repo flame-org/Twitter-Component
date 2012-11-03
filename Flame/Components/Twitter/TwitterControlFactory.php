@@ -34,6 +34,22 @@ class TwitterControlFactory extends \Flame\Application\ControlFactory
 	private $cacheExpire = '+ 10 minutes';
 
 	/**
+	 * @param \Nette\Caching\Cache $cache
+	 */
+	public function injectCache(\Nette\Caching\Cache $cache)
+	{
+		$this->cache = $cache;
+	}
+
+	/**
+	 * @param TwitterLoader $twitterLoader
+	 */
+	public function injectTwitterLoader(TwitterLoader $twitterLoader)
+	{
+		$this->twitterLoader = $twitterLoader;
+	}
+
+	/**
 	 * @param $expirationLimit
 	 */
 	public function setCacheExpire($expirationLimit)
@@ -58,44 +74,35 @@ class TwitterControlFactory extends \Flame\Application\ControlFactory
 	}
 
 	/**
-	 * @param \Nette\Caching\Cache $cache
-	 */
-	public function injectCache(\Nette\Caching\Cache $cache)
-	{
-		$this->cache = $cache;
-	}
-
-	/**
-	 * @param TwitterLoader $twitterLoader
-	 */
-	public function injectTwitterLoader(TwitterLoader $twitterLoader)
-	{
-		$this->twitterLoader = $twitterLoader;
-	}
-
-	/**
 	 * @param null $data
 	 * @return TwitterControl
 	 * @throws \Nette\InvalidStateException
 	 */
 	public function create($data = null)
 	{
-		if($this->config === null){
+		$control = new TwitterControl;
+		$control->setItems($this->getTwitterItems());
+		return $control;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	protected function getTwitterItems()
+	{
+		if($this->config === null)
 			throw new \Nette\InvalidStateException('No config specified');
+
+		$key = 'twitter-' . json_encode($this->config);
+
+		if(isset($this->cache[$key])){
+			$items = $this->cache[$key];
 		}else{
-			$key = 'twitter-' . json_encode($this->config);
-
-			if(isset($this->cache[$key])){
-				$items = $this->cache[$key];
-			}else{
-				$items = $this->twitterLoader->getTweets($this->config);
-				$this->cache->save($key, $items, array(\Nette\Caching\Cache::EXPIRE => $this->cacheExpire));
-			}
-
-			$control = new TwitterControl;
-			$control->setItems($items);
-			return $control;
+			$items = $this->twitterLoader->getTweets($this->config);
+			$this->cache->save($key, $items, array(\Nette\Caching\Cache::EXPIRE => $this->cacheExpire));
 		}
+
+		return $items;
 	}
 
 }
