@@ -76,17 +76,16 @@ class TwitterControlFactory extends \Flame\Application\ControlFactory
 	/**
 	 * @param null $data
 	 * @return TwitterControl
-	 * @throws \Nette\InvalidStateException
 	 */
 	public function create($data = null)
 	{
-		$control = new TwitterControl;
-		$control->setItems($this->getTwitterItems());
-		return $control;
+		$items = $this->getTwitterItems();
+		return new TwitterControl($items ? $items : array());
 	}
 
 	/**
 	 * @return mixed
+	 * @throws \Nette\InvalidStateException
 	 */
 	protected function getTwitterItems()
 	{
