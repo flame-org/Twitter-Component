@@ -16,25 +16,22 @@ class TwitterControl extends \Flame\Application\UI\Control
 	/**
 	 * @var array
 	 */
-	protected $items = array();
+	protected $items;
 
 	/**
 	 * @param $items
 	 */
-	public function setItems($items)
+	public function __construct(array $items)
 	{
-		if(is_array($items)){
-			$this->items = \Nette\ArrayHash::from($items);
-		}else{
-			$this->items = $items;
-		}
+		parent::__construct();
+		$this->items = \Nette\ArrayHash::from($items);
 	}
 
 	public function render()
 	{
 		$this->template->setFile(__DIR__ . '/TwitterControl.latte');
 		$this->template->items = $this->items;
-		parent::render();
+		$this->template->render();
 	}
 
 	/**
