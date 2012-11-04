@@ -23,7 +23,6 @@
 	},
 
 	"config": {
-		"bin-dir": "/usr/local/bin/",
 		"vendor-dir": "libs"
 	},
 

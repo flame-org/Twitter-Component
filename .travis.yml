@@ -3,7 +3,7 @@ php:
     - 5.3
     - 5.4
 
-script: "cd tests && phpunit Flame/"
+script: "cd tests/ && ../libs/bin/phpunit Flame/"
 
 before_script:
   - curl -s http://getcomposer.org/installer | php
