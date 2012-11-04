@@ -4,17 +4,29 @@
 	"keywords": ["nette", "component", "twitter", "twitter-component"],
 	"homepage": "https://github.com/flame-org/Twitter-Component",
 	"license": "MIT",
+
 	"authors": [
 		{
 			"name": "JSifalda",
 			"homepage": "http://jsifalda.name/"
 		}
 	],
+
 	"require": {
 		"php": ">=5.3.2",
-		"nette/nette": "*",
+		"nette/nette": "dev-master",
 		"flame/framework": "dev-master"
 	},
+
+	"require-dev": {
+		"phpunit/phpunit": "3.7.*"
+	},
+
+	"config": {
+		"bin-dir": "/usr/local/bin/",
+		"vendor-dir": "libs"
+	},
+
 	"autoload": {
 		"psr-0":{
             "Flame":""
