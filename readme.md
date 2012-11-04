@@ -1,4 +1,4 @@
-# TwitterControl for Nette Framework
+# TwitterControl for Nette Framework [![Build Status](https://secure.travis-ci.org/flame-org/Twitter-Component.png?branch=master)](https://travis-ci.org/flame-org/Twitter-Component)
 
 ## About
 
