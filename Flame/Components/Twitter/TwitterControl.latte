@@ -1,19 +1,16 @@
 
-{#content}
-
-	{if count($items)}
-    	<div id="last-tweets">
-			<ul>
-				{foreach $items as $item}
-					<li>
-						<img src="{$item->user->profile_image_url}" width="50" >
-						{!$item|tweetFormat}
-                        <time datetime="{$item->created_at|date:'c'}" title="{$item->created_at|date:'g:i A M jS Y'}">
-                            <a href="{$item->user->screen_name|userLink:$item->id_str}">{$item->created_at|timeFormat}</a>
-                        </time>
-					</li>
-				{/foreach}
-			</ul>
-		<div>
-	{/if}
-{/#}
+{if count($items)}
+	<div id="last-tweets">
+		<ul>
+			{foreach $items as $item}
+				<li>
+					<img src="{$item->user->profile_image_url}" width="50" >
+					{!$item|tweetFormat}
+					<time datetime="{$item->created_at|date:'c'}" title="{$item->created_at|date:'g:i A M jS Y'}">
+						<a href="{$item->user->screen_name|userLink:$item->id_str}">{$item->created_at|timeFormat}</a>
+					</time>
+				</li>
+			{/foreach}
+		</ul>
+	<div>
+{/if}
